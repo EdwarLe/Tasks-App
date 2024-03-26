@@ -14,28 +14,50 @@
                         </div>
                     @endif
 
-                    <form action=''>
+                    <div>
+                        @if (count($errors) > 0)
+                            <div>
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>
+                                            {{$error}}
+                                        </li>
+                                        @endforeach
+                                </ul>
+                            </div>
+                        @endif
+                    </div>
+
+                    <form action='' method='POST'>
+                        @csrf   
                         <div class=''>
-                            <label for="employee_id">
+                            <label for="Employee">
                                 Employee:
                             </label>
-                            <select name="employee_id">
-                                <option value="1">Employee 1</option>
-                                <option value="2">Employee 2</option>
-                                <option value="3">Employee 3</option>
+                            <select name="Employee" >
+                                <option>Select...</option>
+                                @foreach ($users as $user)
+                                <option value="{{$user->id}}">{{$user->name}}</option>
+                                @endforeach
                             </select>
                         </div>
                         <div class=''>
-                            <label for="title_task_id">
+                            <label for="Title">
                                 Title:
                             </label>
-                            <input type="text">
+                            <input type="text" name="Title" value="{{ old('Title') }}">
                         </div>
                         <div>
-                            <label for="description_task_id">
+                            <label for="Description">
                                 Description:
                             </label>
-                            <textarea name="description_task_id" cols="30" rows="4"></textarea>
+                            <textarea name="Description" cols="30" rows="4">{{ old('Description') }}</textarea>
+                        </div>
+                        <div>
+                            <label for="Attachment">
+                                Upload Fiel:
+                            </label>
+                            <input type="text" name='Attachment' value="{{ old('Attachment') }}">
                         </div>
                         <div>
                             <button type='submit'>Create Task</button>

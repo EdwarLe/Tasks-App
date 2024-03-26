@@ -13,6 +13,13 @@ return new class extends Migration
     {
         Schema::create('comments', function (Blueprint $table) {
             $table->id();
+            $table->string('comment');
+            $table->binary('attachment');
+            
+            $table->foreignId('task_id')->constrained('tasks');
+            $table->foreignId('user_id')->constrained('users');
+
+
             $table->timestamps();
         });
     }
