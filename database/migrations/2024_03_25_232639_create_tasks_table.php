@@ -16,8 +16,9 @@ return new class extends Migration
 
             $table->string('title');
             $table->string('description');
-            $table->binary('attachment');
+            $table->string('attachment');
             $table->integer('asigned_to');
+            $table->softDeletes();
 
             $table->foreignId('user_id')->constrained('users')->nullable();
 

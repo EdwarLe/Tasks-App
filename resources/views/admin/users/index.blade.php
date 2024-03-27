@@ -76,7 +76,7 @@
                                 <td>{{ $user->name }}</td>
                                 <td>
                                     <a href="/user/{{ $user->id }}">Edit</a>
-                                    <a href="#">Delete</a>
+                                    <a href="/user/{{ $user->id }}/delete">Delete</a>
                                 </td>
                             </tr>
                             @endforeach

@@ -79,7 +79,16 @@ class UserController extends Controller
 
         $user->save();
 
-        return back()->with('notification', 'Succesfullu updated user');
+        return back()->with('notification', 'Succesfully updated user');
+    }
+
+    public function delete ($id) {
+
+        $user = User::find($id);
+        $user->delete();
+
+        return back()->with('notification', 'Succesfully deleted user');
+
     }
 
 }

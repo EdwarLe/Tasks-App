@@ -65,18 +65,17 @@
                     <table class='table'>
                         <thead>
                             <tr>
-                                <th>Name</th>
-                                <th>Task</th>
+                                <th>Title</th>
+                                <th>Description</th>
                                 <th>Options</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td>prueba@mail.com</td>
-                                <td>Prueba Test</td>
+                                <td>Tarea que corresponde al usuario</td>
+                                <td>Descripción de la tarea</td>
                                 <td>
-                                    <a href="#">Edit</a>
-                                    <a href="#">Delete</a>
+                                    <a href="#">See</a>
                                 </td>
                             </tr>
                         </tbody>

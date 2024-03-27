@@ -15,6 +15,14 @@
                     @endif
 
                     <div>
+                        @if (session('notification'))
+                            <div>
+                                {{ session('notification') }}
+                            </div>
+                        @endif
+                    </div>
+
+                    <div>
                         @if (count($errors) > 0)
                             <div>
                                 <ul>
@@ -28,13 +36,13 @@
                         @endif
                     </div>
 
-                    <form action='' method='POST'>
+                    <form action='' method='POST' enctype='multipart/form-data'>
                         @csrf   
                         <div class=''>
-                            <label for="Employee">
+                            <label for="employee">
                                 Employee:
                             </label>
-                            <select name="Employee" >
+                            <select name="employee" >
                                 <option>Select...</option>
                                 @foreach ($users as $user)
                                 <option value="{{$user->id}}">{{$user->name}}</option>
@@ -54,16 +62,49 @@
                             <textarea name="Description" cols="30" rows="4">{{ old('Description') }}</textarea>
                         </div>
                         <div>
-                            <label for="Attachment">
-                                Upload Fiel:
+                            <label for="attachment">
+                                Upload File:
                             </label>
-                            <input type="text" name='Attachment' value="{{ old('Attachment') }}">
+                            <input type="file" name='attachment'>
                         </div>
                         <div>
                             <button type='submit'>Create Task</button>
                         </div>
 
                     </form>
+                    <table class='table'>
+                        <thead>
+                            <tr>
+                                <th>Title</th>
+                                <th>Description</th>
+                                <th>User</th>
+                                <th>Attachments</th>
+                                <th>Options</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($tasks as $task)
+                            <tr>
+                                <td>{{ $task->title }}</td>
+                                <td>{{ $task->description }}</td>
+                                <td>{{ $task->asigned_to }}</td>
+                                <td>
+                                    <div>
+                                        <img src="/images/{{ $task->attachment }}" alt="" style="width: 100px"></td>
+                                    </div>
+                                <td>
+                                    @if ($task->trashed())
+                                    <a href="/assign-task/{{$task->id}}/restore">Restore</a>
+                                    @else
+                                    <a href="/assign-task/{{$task->id}}">Edit</a>
+                                    <a href="/assign-task/{{$task->id}}/delete">Delete</a>
+
+                                    @endif
+                                </td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
